@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hey Sally💖</title>
+<title>Hey Sally 💖</title>
 <style>
   body {
     margin: 0;
@@ -29,18 +29,19 @@
   h1 { font-size: 24px; margin-bottom: 15px; }
   p { font-size: 16px; margin-bottom: 25px; }
 
-  button {
+  .btn {
     background: #ff4b7d;
     border: none;
     color: white;
-    padding: 14px 22px;
-    font-size: 16px;
+    padding: 12px 20px;
+    font-size: 15px;
     border-radius: 30px;
     cursor: pointer;
     transition: transform 0.2s;
+    margin: 5px;
   }
 
-  button:hover { transform: scale(1.05); }
+  .btn:hover { transform: scale(1.05); }
 
   .hidden { display: none; }
 
@@ -60,9 +61,10 @@
 
 <!-- Landing Question -->
 <div class="card" id="question">
-  <h1>Hey you 💖</h1>
-  <p>I’ve been meaning to ask you something important…</p>
-  <button onclick="sayYes()">Will you be my Valentine? 💌</button>
+  <h1>Hey Sally 💖</h1>
+  <p>Will you be my Valentine?</p>
+  <button class="btn" onclick="sayYes()">Yes 💌</button>
+  <button class="btn" onclick="sayNo()">No 😢</button>
 </div>
 
 <!-- YES Page -->
@@ -70,13 +72,66 @@
   <h1>YAY 🥰</h1>
   <p>
     You just made my heart very happy.<br><br>
-    Valentine’s Day is officially ours 💕<br><br>
-    Get ready… I’m planning something special 😌
+    Valentine's Day is officially ours 💕<br><br>
+    Get ready… I'm planning something special 😌
   </p>
-  <button onclick="playVoice()">🎧 Play my message 💖</button>
-  <audio id="voiceNote" src="https://drive.google.com/uc?export=download&id=12L0XW_ummbFk9KIgqxpI3JRLZoGxv4-C"></audio>
+  <button class="btn" onclick="playVoice()">🎧 Play my message 💖</button>
+  <audio id="voiceNote"
+    src="https://docs.google.com/uc?export=download&id=12L0XW_ummbFk9KIgqxpI3JRLZoGxv4-C">
+  </audio>
+</div>
+
+<!-- NO Page -->
+<div class="card hidden" id="noPage">
+  <h1>Oh no 😭</h1>
+  <p>
+    That answer is not allowed.<br><br>
+    Try again… maybe hit the *other* button? 😉
+  </p>
+  <button class="btn" onclick="backToQuestion()">Go back 💘</button>
 </div>
 
 <script>
 function sayYes() {
-  document
+  document.getElementById("question").classList.add("hidden");
+  document.getElementById("noPage").classList.add("hidden");
+  document.getElementById("yesPage").classList.remove("hidden");
+  document.title = "YAY 🥰";
+  spawnHearts();
+}
+
+function sayNo() {
+  document.getElementById("question").classList.add("hidden");
+  document.getElementById("yesPage").classList.add("hidden");
+  document.getElementById("noPage").classList.remove("hidden");
+}
+
+function backToQuestion() {
+  document.getElementById("noPage").classList.add("hidden");
+  document.getElementById("yesPage").classList.add("hidden");
+  document.getElementById("question").classList.remove("hidden");
+  document.title = "Hey Sally 💖";
+}
+
+function playVoice() {
+  document.getElementById("voiceNote").play();
+}
+
+function spawnHearts() {
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.textContent = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "-20px";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+}
+</script>
+</body>
+</html>
