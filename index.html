@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey Sally💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Arial", sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+
+  h1 { font-size: 24px; margin-bottom: 15px; }
+  p { font-size: 16px; margin-bottom: 25px; }
+
+  button {
+    background: #ff4b7d;
+    border: none;
+    color: white;
+    padding: 14px 22px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  button:hover { transform: scale(1.05); }
+
+  .hidden { display: none; }
+
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: float 4s linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-600px); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Landing Question -->
+<div class="card" id="question">
+  <h1>Hey you 💖</h1>
+  <p>I’ve been meaning to ask you something important…</p>
+  <button onclick="sayYes()">Will you be my Valentine? 💌</button>
+</div>
+
+<!-- YES Page -->
+<div class="card hidden" id="yesPage">
+  <h1>YAY 🥰</h1>
+  <p>
+    You just made my heart very happy.<br><br>
+    Valentine’s Day is officially ours 💕<br><br>
+    Get ready… I’m planning something special 😌
+  </p>
+  <button onclick="playVoice()">🎧 Play my message 💖</button>
+  <audio id="voiceNote" src="https://drive.google.com/uc?export=download&id=12L0XW_ummbFk9KIgqxpI3JRLZoGxv4-C"></audio>
+</div>
+
+<script>
+function sayYes() {
+  document
